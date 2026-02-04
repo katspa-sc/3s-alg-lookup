@@ -211,55 +211,45 @@ function clearAll() {
 
 
 function lookup(key) {
-
   const data = getData();
-
   result.innerHTML = "";
 
   if (!data[key] || data[key].length === 0) {
-
     updateStatus("No results");
     return;
   }
 
-  // Only first result
-  const [value1, value2] = data[key][0];
+  const [value1, value2] = data[key][0]; // only one result
 
   updateStatus("Found");
 
+  // Create card
   const card = document.createElement("div");
   card.className = "card";
 
+  // Key element (big and bold)
   const keyEl = document.createElement("div");
   keyEl.className = "card-key";
-  keyEl.textContent = `Key: ${key}`;
+  keyEl.textContent = key;
 
+  card.appendChild(keyEl);
+
+  // Note element (optional, muted, italic)
+  if (value1) {
+    const noteEl = document.createElement("div");
+    noteEl.className = "card-note";
+    noteEl.textContent = value1;
+    card.appendChild(noteEl);
+  }
+
+  // Algorithm element (large, centered)
   const val2El = document.createElement("div");
   val2El.className = "card-value2";
   val2El.textContent = value2;
-
-  card.appendChild(keyEl);
   card.appendChild(val2El);
-
-  // Only show note if exists
-  if (value1) {
-
-    const val1El = document.createElement("div");
-    val1El.className = "card-value1";
-    val1El.textContent = value1;
-
-    card.appendChild(val1El);
-  }
 
   result.appendChild(card);
 }
-
-
-
-
-/* ======================
-   INPUT
-====================== */
 
 input.addEventListener("input", () => {
 
@@ -288,8 +278,8 @@ switchBtn.addEventListener("click", () => {
 
   switchBtn.textContent =
     active === "corner"
-      ? "TSV: Corner"
-      : "TSV: Edge";
+      ? "Corners"
+      : "Edges";
 
   updateStatus(`Switched to ${active}`);
 });
