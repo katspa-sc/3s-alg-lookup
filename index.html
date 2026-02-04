@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Alg lookupp</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0f1115"> 
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js");
+  }
+</script>
+<body class="dark">
+
+  <div class="app">
+
+    <!-- Header -->
+    <header class="top-bar">
+
+      <div class="mode">
+        <button id="switchBtn">Corner</button>
+      </div>
+
+      <div class="actions">
+        <button id="refreshBtn">↻</button>
+        <button id="clearBtn">✕</button>
+      </div>
+
+    </header>
+
+
+    <!-- Input -->
+    <section class="search">
+
+      <input
+        id="keyInput"
+        placeholder="AB"
+        maxlength="2"
+        autocomplete="off"
+      />
+
+    </section>
+
+
+    <!-- Results -->
+    <main id="result" class="results"></main>
+
+
+    <!-- Status -->
+    <footer id="status" class="status">
+      Ready
+    </footer>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
